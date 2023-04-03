@@ -42,7 +42,8 @@ int pgcd(int n1, int n2)
             n2 = n2 / i;
             result = result * i;
         }
-        else i++;
+        else 
+            i++;
     }
     return (result);
 }
