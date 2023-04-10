@@ -26,16 +26,52 @@ $>./union "rien" | cat -e
 $
 $>*/
 #include <unistd.h>
+int check(int c, char *str, int index)
+{
+    int i;
+
+    i = 0;
+    while(i < index)
+    {
+        if (str[i] == c)
+            return 0;
+        i++;
+    }
+    return 1;
+}
+
 void ft_union(char *str1, char *str2)
 {
+    int i;
+    int j;
+    int k;
 
+    i = 0;
+    j = 0;
+    k = 0;
+    while(str1[i] != '\0')
+        i++;
+    while(str2[j] != '\0')
+    {
+        str1[i] = str2[j];
+        i++;
+        j++;
+    }
+    i--;
+    while(k <= i)
+    {
+        if(check(str1[k], str1, k) == 1)
+            write (1, &str1[k], 1);
+        k++;
+    }
+    write (1, "\n", 1);
 }
 
 int main(int argc, char **argv)
 {
     if (argc != 3)
     {
-        write(1, '\n', 1);
+        write(1, "\n", 1);
         return (1);
     }
     ft_union(argv[1], argv[2]);
