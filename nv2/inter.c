@@ -22,9 +22,39 @@ rien$
 $>./inter | cat -e
 $*/
 #include <unistd.h>
+void replace(char *str2, char c)
+{
+    int i;
+
+    i = 0;
+    while(str2[i] != '\0')
+    {
+        if(str2[i] == c)
+            str2[i] = -1;
+        i++;
+    }
+}
 
 void    inter(char *str1, char *str2)
 {
+    int i;
+    int j;
+
+    i = 0;
+    while(str1[i] != '\0')
+    {
+        j = 0;
+        while(str2[j] != '\0')
+        {
+            if(str1[i] == str2[j])
+            {
+                write(1, &str1[i], 1);
+                replace(str2, str1[i]);
+            }
+            j++;
+        }
+        i++;
+    }
     
 }
 
